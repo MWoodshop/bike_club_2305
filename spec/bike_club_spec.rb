@@ -146,5 +146,29 @@ RSpec.describe BikeClub do
 
       expect(@bike_club1.eligible_bikers_for_ride(@ride1)).to eq([@biker1, @biker2, @biker3])
     end
+
+    it 'can return correct bikers based on terrain' do
+      @ride3 = Ride.new({ name: 'Rainbow Road', distance: 20, loop: true, terrain: :rainbow })
+
+      @bike_club1.add_biker(@biker1)
+      @bike_club1.add_biker(@biker2)
+      @bike_club1.add_biker(@biker3)
+
+      expect(@bike_club1.eligible_bikers_for_ride(@ride3)).to eq([])
+    end
+
+    it 'can return correct bikers based on distance' do
+      @ride3 = Ride.new({ name: 'Rainbow Road', distance: 20, loop: false, terrain: :rainbow })
+
+      @bike_club1.add_biker(@biker1)
+      @bike_club1.add_biker(@biker2)
+      @bike_club1.add_biker(@biker3)
+
+      @biker1.learn_terrain!(:rainbow)
+      @biker2.learn_terrain!(:rainbow)
+      @biker3.learn_terrain!(:rainbow)
+
+      expect(@bike_club1.eligible_bikers_for_ride(@ride3)).to eq([@biker3])
+    end
   end
 end
