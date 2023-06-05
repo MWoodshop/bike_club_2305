@@ -25,6 +25,7 @@ RSpec.describe Ride do
     end
 
     it 'returns correct total distance with loop' do
+      expect(@ride2.loop).to eq(true)
       expect(@ride2.total_distance).to eq(14.9)
     end
   end
