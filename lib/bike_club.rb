@@ -37,6 +37,10 @@ class BikeClub
       end
     end
 
-    fastest_bikers
+    if fastest_bikers.size == 1
+      fastest_bikers.first.name
+    else
+      fastest_bikers.map(&:name).join(' and ') + ' are tied'
+    end
   end
 end
