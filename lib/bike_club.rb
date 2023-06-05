@@ -10,10 +10,6 @@ class BikeClub
     @bikers << biker
   end
 
-  # def biker_with_most_rides
-  #   @bikers.max_by { |biker| biker.rides.values.flatten.count }.name
-  # end
-
   def biker_with_most_rides
     max_rides = @bikers.map { |biker| biker.rides.values.flatten.count }.max
     bikers_with_most_rides = @bikers.select { |biker| biker.rides.values.flatten.count == max_rides }
@@ -23,5 +19,22 @@ class BikeClub
     else
       bikers_with_most_rides.map(&:name).join(' and ') + ' are tied'
     end
+  end
+
+  def fastest_biker_for_ride(ride)
+    fastest_biker = nil
+    fastest_time = nil
+
+    @bikers.each do |biker|
+      next unless biker.rides.key?(ride)
+
+      best_biker_time = biker.personal_record(ride)
+      if fastest_time.nil? || best_biker_time < fastest_time
+        fastest_time = best_biker_time
+        fastest_biker = biker
+      end
+    end
+
+    fastest_biker
   end
 end
