@@ -5,7 +5,7 @@ RSpec.describe BikeClub do
     @bike_club1 = BikeClub.new('Touring with Turing')
     @bike_club2 = BikeClub.new('Bike Party')
     @biker1 = Biker.new('Kenny', 30)
-    @biker2 = Biker.new('Athena', 15)
+    @biker2 = Biker.new('Athena', 35)
     @ride1 = Ride.new({ name: 'Walnut Creek Trail', distance: 10.7, loop: false, terrain: :hills })
     @biker1.learn_terrain!(:gravel)
     @biker1.learn_terrain!(:hills)
@@ -33,7 +33,7 @@ RSpec.describe BikeClub do
     it 'can return the biker with the most rides' do
       @bike_club1.add_biker(@biker1)
       @bike_club1.add_biker(@biker2)
-      
+
       @biker1.log_ride(@ride1, 92.5)
       @biker1.log_ride(@ride1, 91.1)
       @biker1.log_ride(@ride1, 90.0)
@@ -42,6 +42,19 @@ RSpec.describe BikeClub do
       @biker2.log_ride(@ride1, 92.9)
 
       expect(@bike_club1.biker_with_most_rides).to eq('Kenny')
+    end
+
+    it 'can return a tie' do
+      @bike_club1.add_biker(@biker1)
+      @bike_club1.add_biker(@biker2)
+
+      @biker1.log_ride(@ride1, 92.5)
+      @biker1.log_ride(@ride1, 91.1)
+
+      @biker2.log_ride(@ride1, 93.0)
+      @biker2.log_ride(@ride1, 92.9)
+
+      expect(@bike_club1.biker_with_most_rides).to eq('Kenny and Athena are tied')
     end
   end
 end
