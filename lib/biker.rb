@@ -14,7 +14,7 @@ class Biker
     @acceptable_terrain = []
   end
 
-  def learn_terrain(terrain)
+  def learn_terrain!(terrain)
     @acceptable_terrain << terrain
   end
 
