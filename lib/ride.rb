@@ -9,6 +9,10 @@ class Ride
   end
 
   def total_distance
-    @distance * 2
+    if @loop == false
+      @distance * 2
+    else
+      @distance
+    end
   end
 end
