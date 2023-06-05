@@ -39,7 +39,7 @@ RSpec.describe Biker do
       @biker.log_ride(@ride2, 60.9)
       @biker.log_ride(@ride2, 61.6)
 
-      expect(@biker.rides).to eq({ @ride1 => 91.1, @ride2 => 60.9 })
+      expect(@biker.rides).to eq({ @ride1 => [92.5, 91.1], @ride2 => [60.9, 61.6] })
     end
   end
 end
