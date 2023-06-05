@@ -63,5 +63,30 @@ RSpec.describe Biker do
 
       expect(@biker.rides).to eq({})
     end
+
+    it 'will not log a ride if distance exceeds maximum distance of rider' do
+      @biker2.learn_terrain(:gravel)
+      @biker2.learn_terrain(:hills)
+
+      @biker2.log_ride(@ride1, 95) # This exceeds the maximum distance of biker2
+      @biker2.log_ride(@ride2, 65)
+
+      expect(@biker2.rides).to eq({ @ride2 => [65] })
+    end
+  end
+
+  describe '#personal_record' do
+    it 'can return the shortest time for a ride' do
+      @biker.learn_terrain(:gravel)
+      @biker.learn_terrain(:hills)
+
+      @biker.log_ride(@ride1, 92.5)
+      @biker.log_ride(@ride1, 91.1)
+      @biker.log_ride(@ride2, 60.9)
+      @biker.log_ride(@ride2, 61.6)
+
+      expect(@biker.personal_record(@ride1)).to eq(91.1)
+      expect(@biker.personal_record(@ride2)).to eq(60.9)
+    end
   end
 end
