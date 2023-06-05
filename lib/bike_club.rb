@@ -22,7 +22,7 @@ class BikeClub
   end
 
   def fastest_biker_for_ride(ride)
-    fastest_biker = nil
+    fastest_bikers = []
     fastest_time = nil
 
     @bikers.each do |biker|
@@ -31,10 +31,12 @@ class BikeClub
       best_biker_time = biker.personal_record(ride)
       if fastest_time.nil? || best_biker_time < fastest_time
         fastest_time = best_biker_time
-        fastest_biker = biker
+        fastest_bikers = [biker]
+      elsif best_biker_time == fastest_time
+        fastest_bikers << biker
       end
     end
 
-    fastest_biker
+    fastest_bikers
   end
 end
