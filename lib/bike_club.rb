@@ -43,4 +43,10 @@ class BikeClub
       fastest_bikers.map(&:name).join(' and ') + ' are tied'
     end
   end
+
+  def eligible_bikers_for_ride(ride)
+    @bikers.select do |biker|
+      biker.acceptable_terrain.include?(ride.terrain) && ride.total_distance <= biker.max_distance
+    end
+  end
 end
