@@ -45,7 +45,7 @@ RSpec.describe BikeClub do
       @biker2.log_ride(@ride1, 93.0)
       @biker2.log_ride(@ride1, 92.9)
 
-      expect(@bike_club1.biker_with_most_rides).to eq('Kenny')
+      expect(@bike_club1.biker_with_most_rides).to eq(@biker1.name)
     end
 
     it 'can return a two way tie' do
@@ -58,7 +58,7 @@ RSpec.describe BikeClub do
       @biker2.log_ride(@ride1, 93.0)
       @biker2.log_ride(@ride1, 92.9)
 
-      expect(@bike_club1.biker_with_most_rides).to eq('Kenny and Athena are tied')
+      expect(@bike_club1.biker_with_most_rides).to eq("#{@biker1.name} and #{@biker2.name} are tied")
     end
     it 'can return a three way tie' do
       @bike_club1.add_biker(@biker1)
@@ -74,7 +74,7 @@ RSpec.describe BikeClub do
       @biker3.log_ride(@ride1, 93.0)
       @biker3.log_ride(@ride1, 92.9)
 
-      expect(@bike_club1.biker_with_most_rides).to eq('Kenny and Athena and Steve are tied')
+      expect(@bike_club1.biker_with_most_rides).to eq("#{@biker1.name} and #{@biker2.name} and #{@biker3.name} are tied")
     end
   end
 
@@ -93,8 +93,8 @@ RSpec.describe BikeClub do
       @biker2.log_ride(@ride2, 59.8)
       @biker2.log_ride(@ride2, 60.4)
 
-      expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq('Kenny')
-      expect(@bike_club1.fastest_biker_for_ride(@ride2)).to eq('Athena')
+      expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq(@biker1.name)
+      expect(@bike_club1.fastest_biker_for_ride(@ride2)).to eq(@biker2.name)
     end
 
     it 'can return a two way tie' do
@@ -111,7 +111,7 @@ RSpec.describe BikeClub do
       @biker2.log_ride(@ride2, 60.1)
       @biker2.log_ride(@ride2, 61.3)
 
-      expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq('Kenny and Athena are tied')
+      expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq("#{@biker1.name} and #{@biker2.name} are tied")
     end
 
     it 'can return a three way tie' do
@@ -134,7 +134,7 @@ RSpec.describe BikeClub do
       @biker3.log_ride(@ride2, 60.1)
       @biker3.log_ride(@ride2, 61.3)
 
-      expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq('Kenny and Athena and Steve are tied')
+      expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq("#{@biker1.name} and #{@biker2.name} and #{@biker3.name} are tied")
     end
   end
 
