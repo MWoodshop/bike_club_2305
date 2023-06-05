@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe Ride do
   before(:each) do
     @ride1 = Ride.new({ name: 'Walnut Creek Trail', distance: 10.7, loop: false, terrain: :hills })
+    @ride2 = Ride.new({ name: 'Town Lake', distance: 14.9, loop: true, terrain: :gravel })
   end
 
   describe '#initialize' do
@@ -21,6 +22,10 @@ RSpec.describe Ride do
   describe 'total_distance' do
     it 'returns correct total distance with no loop' do
       expect(@ride1.total_distance).to eq(21.4)
+    end
+
+    it 'returns correct total distance with loop' do
+      expect(@ride2.total_distance).to eq(14.9)
     end
   end
 end
