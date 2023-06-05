@@ -25,5 +25,9 @@ class Biker
     @rides[ride] << time
   end
 
-  def personal_record(ride); end
+  def personal_record(ride)
+    return false unless @rides[ride]
+
+    @rides[ride].min_by(&:to_f)
+  end
 end
