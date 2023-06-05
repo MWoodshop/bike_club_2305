@@ -9,5 +9,10 @@ RSpec.describe Biker do
     it 'can initialize' do
       expect(@biker).to be_an_instance_of(Biker)
     end
+
+    it 'returns correct attributes' do
+      expect(@biker.name).to eq('Kenny')
+      expect(@biker.max_distance).to eq(30)
+    end
   end
 end
