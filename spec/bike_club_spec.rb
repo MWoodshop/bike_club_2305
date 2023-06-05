@@ -137,4 +137,14 @@ RSpec.describe BikeClub do
       expect(@bike_club1.fastest_biker_for_ride(@ride1)).to eq('Kenny and Athena and Steve are tied')
     end
   end
+
+  describe '#eligible_bikers_for_ride' do
+    it 'can return the eligible bikers' do
+      @bike_club1.add_biker(@biker1)
+      @bike_club1.add_biker(@biker2)
+      @bike_club1.add_biker(@biker3)
+
+      expect(@bike_club1.eligible_bikers_for_ride(@ride1)).to eq([@biker1, @biker2, @biker3])
+    end
+  end
 end
